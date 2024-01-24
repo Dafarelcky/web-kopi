@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
             $table->string('tagline');
-            $table->string('image');
+            $table->string('bg_image');
             $table->timestamps();
         });
     }
