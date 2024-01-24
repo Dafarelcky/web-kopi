@@ -11,7 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class HomeResource extends Resource
 {
@@ -26,7 +28,7 @@ class HomeResource extends Resource
                 Forms\Components\TextInput::make('tagline')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
+                Forms\Components\FileUpload::make('bg_image')
                     ->image()
                     ->required(),
             ]);
@@ -38,7 +40,7 @@ class HomeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('tagline')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('bg_image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -56,7 +58,15 @@ class HomeResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->after(
+                        function(Collection $records) {
+                            foreach ($records as $key => $value) {
+                                if ($value->bg_image) {
+                                    Storage::disk('public')->delete($value->bg_image);
+                                }
+                            }
+                        }
+                    ),
                 ]),
             ]);
     }
