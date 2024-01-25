@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/', [KopiController::class, 'home']);
+Route::get('/', [KopiController::class, 'product']);
+Route::get('/buy/{id}', [KopiController::class, 'buy']);
