@@ -19,7 +19,7 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function form(Form $form): Form
     {
@@ -41,18 +41,7 @@ class ProductResource extends Resource
                         ->image()
                         ->required()
                         ->disk('public'),
-                    Forms\Components\FileUpload::make('image1')
-                        ->image()
-                        ->required()
-                        ->disk('public'),
-                    Forms\Components\FileUpload::make('image2')
-                        ->image()
-                        ->required()
-                        ->disk('public'),
-                    Forms\Components\FileUpload::make('image3')
-                        ->image()
-                        ->required()
-                        ->disk('public'),
+                    
                 ])
             ]);
     }

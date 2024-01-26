@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Contact;
 use App\Models\Home;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -11,23 +13,18 @@ class KopiController extends Controller
 {
     public function home()
     {
-        $data = Home::first();
- 
-        
-        return view('home', [
-            'tagline' => $data->tagline,
-            'bg_image' => $data->bg_image,
-        ]);
-    }
-
-    public function product()
-    {
-        $data = Product::all();
-
+        $product = Product::all();
+        $home = Home::first();
+        $about = About::first();
+        $contact = Contact::first();
         
 
         return view('home', [
-           'components' => $data
+            'home' => $home,
+            'about' => $about,
+            'products' => $product,
+            'contact' => $contact
+
         ]);
     }
 

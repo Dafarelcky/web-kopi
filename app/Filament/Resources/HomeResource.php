@@ -30,7 +30,8 @@ class HomeResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('bg_image')
                     ->image()
-                    ->required(),
+                    ->required()
+                    ->disk('public'),
             ]);
     }
 

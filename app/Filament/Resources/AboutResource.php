@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ContactResource\Pages;
-use App\Filament\Resources\ContactResource\RelationManagers;
-use App\Models\Contact;
+use App\Filament\Resources\AboutResource\Pages;
+use App\Filament\Resources\AboutResource\RelationManagers;
+use App\Models\About;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,40 +13,35 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ContactResource extends Resource
+class AboutResource extends Resource
 {
-    protected static ?string $model = Contact::class;
+    protected static ?string $model = About::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-phone';
+    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('alamat')
+                Forms\Components\RichEditor::make('tentang_kami')
                     ->required()
-                    ->maxLength(255),
-                    Forms\Components\TextInput::make('no_telp')
-                    ->tel()
-                    ->required()
-                    ->maxLength(255),
-                    Forms\Components\TextInput::make('link_tiktok')
-                        ->required(),
-                    Forms\Components\TextInput::make('link_gmail')
-                        ->required(),
-                    Forms\Components\TextInput::make('link_instagram')
-                        ->required(),
-                ]);
+                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('image_1')
+                    ->image()
+                    ->required(),
+                Forms\Components\FileUpload::make('image_2')
+                    ->image()
+                    ->required(),
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('alamat')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('no_telp')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('tentang_kami')->limit(50),
+                Tables\Columns\ImageColumn::make('image_1'),
+                Tables\Columns\ImageColumn::make('image_2'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -79,9 +74,9 @@ class ContactResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListContacts::route('/'),
-            'create' => Pages\CreateContact::route('/create'),
-            'edit' => Pages\EditContact::route('/{record}/edit'),
+            'index' => Pages\ListAbouts::route('/'),
+            'create' => Pages\CreateAbout::route('/create'),
+            'edit' => Pages\EditAbout::route('/{record}/edit'),
         ];
     }
 }
