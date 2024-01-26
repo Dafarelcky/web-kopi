@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::get('/', [KopiController::class, 'home']);
+Route::get('/buy/{id}', [KopiController::class, 'buy']);

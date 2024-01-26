@@ -12,5 +12,8 @@ class Contact extends Model
     protected $fillable = [
         'alamat',
         'no_telp',
+        'link_tiktok',
+        'link_gmail',
+        'link_instagram',
     ];
 }
