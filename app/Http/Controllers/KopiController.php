@@ -13,7 +13,7 @@ class KopiController extends Controller
 {
     public function home()
     {
-        $product = Product::all();
+        $product = Product::latest()->get();
         $home = Home::first();
         $about = About::first();
         $contact = Contact::first();
@@ -33,6 +33,17 @@ class KopiController extends Controller
         
         return view('buy', [
             'detail' => Product::find($id)
+        ]);
+    }
+
+    public function product()
+    {
+        $search = request('search');
+        $products = Product::latest()->when($search, function($query) use ($search) {
+            return $query->search($search);
+        })->get();
+        return view('product', [
+            'products' => $products
         ]);
     }
 }

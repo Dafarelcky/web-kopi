@@ -29,6 +29,7 @@ class ContactResource extends Resource
                     Forms\Components\TextInput::make('no_telp')
                     ->tel()
                     ->required()
+                    ->label('No WA (contoh : 6282345678910)')
                     ->maxLength(255),
                     Forms\Components\TextInput::make('link_tiktok')
                         ->required(),

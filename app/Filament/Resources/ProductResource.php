@@ -14,6 +14,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists\Components\Tabs;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class ProductResource extends Resource
 {
@@ -32,8 +34,8 @@ class ProductResource extends Resource
                         ->required()
                         ->maxLength(255),
                     Forms\Components\RichEditor::make('deskripsi')
-                        ->required()
-                        ->maxLength(255),
+                        ->required(),
+                        
                     Forms\Components\TextInput::make('harga')
                         ->required()
                         ->numeric(),
@@ -76,7 +78,15 @@ class ProductResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()->after(
+                        function(Collection $records) {
+                            foreach ($records as $key => $value) {
+                                if ($value->image) {
+                                    Storage::disk('public')->delete($value->image);
+                                }
+                            }
+                        },
+                    )
                 ]),
             ]);
     }

@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [KopiController::class, 'home']);
 Route::get('/buy/{id}', [KopiController::class, 'buy']);
+Route::get('/product', [KopiController::class, 'product']);

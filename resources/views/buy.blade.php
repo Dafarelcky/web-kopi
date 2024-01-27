@@ -10,7 +10,7 @@
     <div class="col-span-1  row-span-4 bg-yellow-500">03</div>
 </div> --}}
 
-<div class="bg-gray-200 px-10 py-10 md:px-0">
+<div class="bg-gray-200 px-10 py-20 md:px-0">
 
     <div class="py-7 text-center">
         <h1 class="text-black font-semibold text-3xl">{{ $detail->nama }}</h1>
@@ -28,11 +28,11 @@
 
 </div>
 
-<div class="px-10 my-7 flex justify-center  flex-wrap gap-10">
+<div class="px-10 my-7 flex justify-center pb-20 flex-wrap gap-10">
     <div class="sm:max-w-52 lg:max-w-lg">
 
         <h1 class="font-semibold text-black text-xl md:text-2xl">Deskripsi</h1>
-        <article class="text-sm">{{ $detail->deskripsi }}</article>
+        <article class="text-sm">{!! $detail->deskripsi !!}</article>
     </div>
     <div class="px-10  shadow-xl rounded-xl">
         <span class="text-xl font-semibold text-black md:text-2xl">Beli Barang</span>
