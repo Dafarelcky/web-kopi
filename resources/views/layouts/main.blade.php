@@ -20,8 +20,9 @@
     @vite('resources/css/app.css')
 </head>
 <body class="relative">
-    
+    @include('partials.navbar')
     @yield('content')
+    @include('partials.footer')
 
     
 </body>

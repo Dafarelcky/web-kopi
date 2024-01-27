@@ -11,7 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class AboutResource extends Resource
 {
@@ -26,6 +28,15 @@ class AboutResource extends Resource
                 Forms\Components\RichEditor::make('tentang_kami')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('tahun_berdiri')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('total_produk')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('total_pelanggan_puas')
+                    ->required()
+                    ->numeric(),
                 Forms\Components\FileUpload::make('image_1')
                     ->image()
                     ->required(),
@@ -40,6 +51,9 @@ class AboutResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('tentang_kami')->limit(50),
+                Tables\Columns\TextColumn::make('tahun_berdiri'),
+                Tables\Columns\TextColumn::make('total_produk'),
+                Tables\Columns\TextColumn::make('total_pelanggan_puas'),
                 Tables\Columns\ImageColumn::make('image_1'),
                 Tables\Columns\ImageColumn::make('image_2'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -59,7 +73,17 @@ class AboutResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->after(function(Collection $records) {
+                            foreach ($records as $key => $value) {
+                                if($value->gambar_1) {
+                                    Storage::disk('public')->delete($value->gambar_1);
+                                };
+                                if($value->gambar_2) {
+                                    Storage::disk('public')->delete($value->gambar_2);
+                                };
+                            }
+                        }),
                 ]),
             ]);
     }
