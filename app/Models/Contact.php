@@ -16,4 +16,6 @@ class Contact extends Model
         'link_gmail',
         'link_instagram',
     ];
+
+   
 }

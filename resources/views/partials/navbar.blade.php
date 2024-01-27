@@ -1,6 +1,6 @@
 <div class="navbar bg-base-100">
     <div class="flex-1">
-      <a class="btn btn-ghost text-xl">Ngopi</a>
+      <a href="/" class="btn btn-ghost text-xl">Ngopi</a>
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">

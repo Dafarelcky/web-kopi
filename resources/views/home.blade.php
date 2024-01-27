@@ -3,13 +3,13 @@
 
 
 
-<div class="bg-[url('{{ asset('/storage/' . $home->bg_image) }}')] w-full bg-no-repeat bg-center h-screen bg-cover relative px-10 lg:px-12">
+<div class=" w-full bg-no-repeat bg-center h-screen bg-cover relative px-10 lg:px-12 after:content-[''] after:block after:bg-gradient-to-r from-black to-transparent after:w-full after:h-full after:absolute after:left-0" style="background-image: url('{{ asset('/storage/' . $home->bg_image) }}')">
     {{-- <div class="bg-[url('/public/img/hero-trans.svg')] w-full h-screen bg-cover absolute left-0"></div> --}}
    
-    <div class="absolute top-0 bottom-0 translate-y-1/4  max-w-2xl z-40 flex flex-col ">
+    <div class="absolute top-0 bottom-0 translate-y-1/3  max-w-2xl z-40 flex flex-col ">
 
-        <h1 class="text-3xl font-bold text-black lg:text-5xl">{{ $home->tagline }}</h1>
-        <a href="#product" class="bg-orange-700 px-8 py-3 text-base text-white rounded-3xl mt-16 max-w-48 ">Pesan sekarang</a>
+        <h1 class="text-3xl font-bold text-white lg:text-5xl">{{ $home->tagline }}</h1>
+        <a href="#product" class="bg-orange-700 px-8 py-3 text-sm text-white rounded-3xl mt-16 max-w-[189px]">Pesan sekarang</a>
     </div>
 </div>
 
@@ -54,12 +54,11 @@
     {{-- end about --}}
 
     {{-- product --}}
-    
-
+   
     <div id="product" class="py-20">
         <div class="flex justify-between items-center">
 
-            <h1 class="text-2xl font-semibold">Product Terbaru Kita</h1>
+            <h1 class="text-2xl font-semibold">Product Terbaru</h1>
             <a href="/product">
                 <span>Lihat Selengkapnya</span>
                 <i class="ri-arrow-right-s-line"></i>
@@ -72,7 +71,7 @@
                 <div class="flex flex-col gap-2 p-5 shadow-lg  rounded-xl">
                     <div class="flex justify-center">
     
-                        <img src="{{ asset('/storage/' . $product->image_1) }}" class="w-28" alt="">
+                    <img src="{{ asset('/storage/' . $product->image_1) }}" class="w-28" alt="">
                     </div>
                     <h3 class="text-lg font-bold cursor-pointer">{{ $product->nama }}</h3>
                     <span class="text-xs max-w-56">{!! Str::of($product->deskripsi)->limit(100) !!}</span>

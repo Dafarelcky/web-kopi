@@ -30,17 +30,11 @@ class Product extends Model
         });
     }
 
-    // public function scopeFilters($query, array $filters){
-    //     $query->when($filters['search'], function($query, $search) {
-    //         return $query->where(function($query) use ($search) {
-    //             $query->where('nama', 'like', '%' . $search . '%')
-    //                   ->orWhere('harga', 'like', '%' . $search . '%');
-    //         });
-    //     });
-    // }
+  
     public function scopeSearch($query, $search)
     {
         return $query->where('nama', 'like', '%' . $search . '%')
                     ->orWhere('harga', 'like', '%' . $search . '%');
     }
+
 }
