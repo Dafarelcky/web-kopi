@@ -11,11 +11,13 @@
 <div class="flex flex-wrap justify-around pb-20">
     @if ($products->count() > 0)
     
+    
         @foreach ($products as $product)
+        
         <div class="flex flex-col gap-2 p-5 shadow-lg  rounded-xl">
             <div class="flex justify-center">
 
-                <img src="/img/product.png" class="w-28" alt="">
+                <img src="{{ asset('/storage/' . $product->image_1) }}" class="w-28" alt="">
             </div>
             <h3 class="text-lg font-bold cursor-pointer">{{ $product->nama }}</h3>
             <span class="text-xs max-w-56">{!! Str::of($product->deskripsi)->limit(100) !!}</span>

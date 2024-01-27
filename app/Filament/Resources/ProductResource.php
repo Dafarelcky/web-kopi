@@ -39,7 +39,19 @@ class ProductResource extends Resource
                     Forms\Components\TextInput::make('harga')
                         ->required()
                         ->numeric(),
-                    Forms\Components\FileUpload::make('image')
+                    Forms\Components\FileUpload::make('image_1')
+                        ->image()
+                        ->required()
+                        ->disk('public'),
+                    Forms\Components\FileUpload::make('image_2')
+                        ->image()
+                        ->required()
+                        ->disk('public'),
+                    Forms\Components\FileUpload::make('image_3')
+                        ->image()
+                        ->required()
+                        ->disk('public'),
+                    Forms\Components\FileUpload::make('image_4')
                         ->image()
                         ->required()
                         ->disk('public'),
@@ -60,7 +72,8 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('harga')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image_1'),
+               
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

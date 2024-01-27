@@ -28,7 +28,7 @@ class KopiController extends Controller
         ]);
     }
 
-    public function buy($id)
+    public function detailProduct($id)
     {   
         
         return view('buy', [
@@ -46,4 +46,29 @@ class KopiController extends Controller
             'products' => $products
         ]);
     }
+
+    public function buy(Request $request)
+    {   
+        
+        $validate = $request->validate([
+            'nama_product' => 'required',
+            'nama' => 'required|max:255',
+            'alamat' => 'required',
+            'quantity' => 'required|numeric',
+            'deskripsi' => 'nullable'
+        ]);
+        
+        $message = urlencode("
+            ORDER : {$validate['nama_product']} 
+            Nama Pembeli : {$validate['nama']} 
+            Jumlah Barang : {$validate['quantity']} 
+            Alamat : {$validate['alamat']}
+            Deskripsi : {$validate['deskripsi']}
+        ");
+        return redirect()->to("https://api.whatsapp.com/send?phone=6282336819550&text={$message}");
+
+        
+    }
+
+    
 }

@@ -14,7 +14,10 @@ class Product extends Model
         'nama',
         'deskripsi',
         'harga',
-        'image',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
     ];
 
     protected static function boot()
