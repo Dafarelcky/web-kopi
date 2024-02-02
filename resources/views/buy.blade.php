@@ -67,7 +67,6 @@
                 </div>
                 <button class="bg-orange-700 px-4 py-2 text-white rounded-lg my-2"  type="submit" >Beli</button>
             </form>
-            <input type="text" id="tes">
             
             
             
