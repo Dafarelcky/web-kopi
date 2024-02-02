@@ -6,6 +6,8 @@ use App\Models\About;
 use App\Models\Contact;
 use App\Models\Home;
 use App\Models\Product;
+use App\Models\Transaksi;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 
@@ -70,5 +72,31 @@ class KopiController extends Controller
         
     }
 
+    public function transaksi_penjualan()
+    {
+        dump(request()->get('nama_produk'));
+        $data = new Transaksi([
+            'nama_produk' => request()->get('nama_produk'),
+            'harga_produk' => request()->get('harga'),
+            'total_harga' => request()->get('harga')*request()->get('jumlah'),
+        ]);
+
+        $data->save();
+
+        return redirect()->route('home');
+    }
     
+    public function feedback($id)
+    {
+        dump(request()->get('nama'));
+        $data = new Feedback([
+            'nama' => request()->get('nama'),
+            'rating' => request()->get('rating'),
+            'id_transaksi' => $id,
+        ]);
+
+        $data->save();
+
+        return redirect()->route('home');
+    }
 }
