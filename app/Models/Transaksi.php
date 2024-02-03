@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Feedback;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaksi extends Model
 {
@@ -14,4 +15,9 @@ class Transaksi extends Model
         'harga_produk',
         'total_harga',
     ];
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class);
+    }
 }

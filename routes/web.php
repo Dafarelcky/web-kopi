@@ -22,5 +22,5 @@ Route::get('/buy', [KopiController::class, 'buy']);
 Route::get('/product', [KopiController::class, 'product']);
 Route::view('/transaksi', 'transaksi');
 Route::post('/transaksi_penjualan', [KopiController::class, 'transaksi_penjualan']);
-Route::post('/feedback/{id}', [KopiController::class, 'feedback']);
-Route::view('/feedback/{id}', 'feedback');
+Route::post('/feedback_post/{id}', [KopiController::class, 'feedback']);
+Route::get('/feedback/{id}', [KopiController::class, 'feedback_nama_produk']);
