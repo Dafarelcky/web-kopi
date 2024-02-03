@@ -9,9 +9,5 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_produk',
-        'harga_produk',
-        'total_harga',
-    ];
+    protected $guarded = ['id'];
 }

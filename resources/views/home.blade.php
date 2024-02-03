@@ -3,7 +3,7 @@
 
 
 
-<div class=" w-full bg-no-repeat bg-center h-screen bg-cover relative px-10 lg:px-12 after:content-[''] after:block after:bg-gradient-to-r from-black to-transparent after:w-full after:h-full after:absolute after:left-0" style="background-image: url('{{ asset('/storage/' . $home->bg_image) }}')">
+<div class=" w-full bg-no-repeat bg-center min-h-screen bg-cover relative px-10 lg:px-12 after:content-[''] after:block after:bg-gradient-to-r from-black to-transparent after:w-full after:h-full after:absolute after:left-0" style="background-image: url('{{ asset('/storage/' . $home->bg_image) }}')">
     {{-- <div class="bg-[url('/public/img/hero-trans.svg')] w-full h-screen bg-cover absolute left-0"></div> --}}
    
     <div class="absolute top-0 bottom-0 translate-y-1/3  max-w-2xl z-40 flex flex-col ">
@@ -28,6 +28,8 @@
                   <div class="stat-value">{{ $about->tahun_berdiri }}</div>
                   
                 </div>
+
+                
                 
                 <div class="stat place-items-center">
                   <div class="stat-title">Total Product</div>

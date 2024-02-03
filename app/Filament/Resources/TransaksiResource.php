@@ -26,7 +26,10 @@ class TransaksiResource extends Resource
                 Forms\Components\TextInput::make('nama_produk')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('harga_produk')
+                Forms\Components\TextInput::make('nama')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('quantity')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('total_harga')
@@ -42,7 +45,11 @@ class TransaksiResource extends Resource
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('nama_produk')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('harga_produk')
+                Tables\Columns\TextColumn::make('nama')
+                    ->numeric()
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_harga')

@@ -31,10 +31,13 @@
         <span class="text-xl font-semibold text-black md:text-2xl">Beli Barang</span>
         <h1 class="my-3 text-base">Rp {{ $detail->harga }}</h1>
         <div class="flex flex-col gap-3 ">
-            <form action="/buy"  id="submitForm">
+            <form action="/buy/{{ $detail->id }}" method="post"  id="submitForm">
+                @method('post')
                 
                 @csrf
-                <input type="hidden" name="nama_product" value="{{ $detail->nama }}">
+               
+
+                <input type="hidden" name="nama_produk" value="{{ $detail->nama }}">
                 <div class="flex flex-col gap-2">
     
                     <label for="nama">Nama Pembeli:</label>
@@ -45,20 +48,25 @@
                     <label for="alamat">Alamat :</label>
                     <input type="text" class="border border-gray-700 focus:outline-none focus:border-orange-700 focus:ring-orange-700 px-4 py-2 rounded-lg" name="alamat" id="alamat" required>
                 </div>
-    
+                
                 <label for="">Jumlah Barang</label>
                 <div class="flex items-center mt-1">
                     
-                    <button class="bg-gray-300 px-2 py-1 rounded-l-md" onclick="decrementQuantity()">-</button>
+                    <button class="bg-gray-300 px-2 py-1 rounded-l-md" onclick="decrementQuantity()" type="button">-</button>
                     <input 
-                      type="text" 
-                      id="quantity" 
-                      name="quantity" 
-                      class="mx-2 p-2 border rounded-md w-14 h-6 text-center"
-                      value="1"
-                      readonly
+                    type="text" 
+                    id="quantity" 
+                    name="quantity" 
+                    class="mx-2 p-2 border rounded-md w-14 h-6 text-center"
+                    value="1"
+                    readonly
                     >
-                    <button class="bg-gray-300 px-2 py-1 rounded-r-md" onclick="incrementQuantity()">+</button>
+                    <button class="bg-gray-300 px-2 py-1 rounded-r-md" onclick="incrementQuantity()" type="button">+</button>
+                </div>
+                <div class="flex flex-col gap-2">
+    
+                    <label for="total_harga">Total Harga :</label>
+                    <input type="text" class="border border-gray-700 focus:outline-none focus:border-orange-700 focus:ring-orange-700 px-4 py-2 rounded-lg" name="total_harga" id="total_harga" value="{{ $detail->harga }}" required>
                 </div>
                 <div class="flex flex-col gap-2">
     
@@ -72,6 +80,7 @@
             
         </div>
     </div>
+  
 
 </div>
         
@@ -91,6 +100,8 @@
         input.value = val - 1;
       }
     }
+
+    
 
     
 

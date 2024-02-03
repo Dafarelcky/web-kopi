@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_produk');
-            $table->float('harga_produk');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('quantity');
             $table->float('total_harga');
+            $table->longText('deskripsi')->nullable();
+            // $table->float('harga_produk');
             $table->timestamps();
         });
     }

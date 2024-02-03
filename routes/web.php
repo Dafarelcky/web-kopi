@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [KopiController::class, 'home'])->name('home');
 Route::get('/buy/{id}', [KopiController::class, 'detailProduct']);
-Route::get('/buy', [KopiController::class, 'buy']);
+Route::post('/buy/{id}', [KopiController::class, 'buy']);
 Route::get('/product', [KopiController::class, 'product']);
 Route::view('/transaksi', 'transaksi');
-Route::post('/transaksi_penjualan', [KopiController::class, 'transaksi_penjualan']);
+Route::post('/transaksi_penjualan', [KopiController::class, 'buy']);
 Route::post('/feedback/{id}', [KopiController::class, 'feedback']);
 Route::view('/feedback/{id}', 'feedback');
