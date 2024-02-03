@@ -43,7 +43,7 @@ class TransaksiResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('nama_produk')
+                Tables\Columns\TextColumn::make('nama_produ')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->numeric()
