@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->string('id_transaksi');
+            $table->string('id_transaksi')->unique();
+            $table->string('nama_produk');
             $table->string('nama');
             $table->string('rating');
             $table->timestamps();
+
+            $table->foreign('transaksis');
         });
     }
 

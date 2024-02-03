@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Transaksi;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class KopiController extends Controller
@@ -89,14 +90,31 @@ class KopiController extends Controller
     public function feedback($id)
     {
         dump(request()->get('nama'));
-        $data = new Feedback([
-            'nama' => request()->get('nama'),
-            'rating' => request()->get('rating'),
-            'id_transaksi' => $id,
-        ]);
-
-        $data->save();
-
+        try {
+            $data = new Feedback([
+                'nama_produk' => request()->get('nama_produk'),
+                'nama' => request()->get('nama'),
+                'rating' => request()->get('rating'),
+                'id_transaksi' => $id,
+            ]);
+        
+            $data->save();
+        
+            // If the save is successful, you can flash a success message
+            Session::flash('success', 'Feedback posted successfully');
+        } catch (\Exception $e) {
+            // If an error occurs, you can flash an error message
+            Session::flash('error', 'Error posting feedback: ' . $e->getMessage());
+        }
+        
         return redirect()->route('home');
+    }
+
+    public function feedback_nama_produk($id)
+    {
+        return view('feedback', [
+            'produk' => Product::find($id),
+            'id' => $id
+        ]);
     }
 }
