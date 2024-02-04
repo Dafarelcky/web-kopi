@@ -29,6 +29,9 @@ class FeedbackResource extends Resource
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('nama_produk')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('rating')
                     ->required()
                     ->maxLength(255),
@@ -42,6 +45,8 @@ class FeedbackResource extends Resource
                 Tables\Columns\TextColumn::make('id_transaksi')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nama_produk')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('rating')
                     ->searchable(),

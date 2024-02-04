@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
+@include('partials.navbar')
 
 
 <div class=" w-full bg-no-repeat bg-center h-screen bg-cover relative px-10 lg:px-12 after:content-[''] after:block after:bg-gradient-to-r from-black to-transparent after:w-full after:h-full after:absolute after:left-0" style="background-image: url('{{ asset('/storage/' . $home->bg_image) }}')">
@@ -31,13 +32,37 @@
                 
                 <div class="stat place-items-center">
                   <div class="stat-title">Total Product</div>
-                  <div class="stat-value">{{ $about->total_produk }}</div>
+                  <div class="stat-value">{{ $Totalproduct }}</div>
                   
                 </div>
                 
                 <div class="stat place-items-center">
-                  <div class="stat-title">Pelanggan yang puas</div>
-                  <div class="stat-value">{{ $about->total_pelanggan_puas }}</div>
+                  <div class="stat-title">Rating {{ $rating }}/5</div>
+                  <div class="stat-value">
+
+                    @for ($i = 0; $i < 50; $i = $i + 10)
+                        {{-- @if (($i + 1) % 10 == 0) --}}
+                            @if ($i < ($rating*10))
+
+                            @if (($rating*10) - $i > 0 & ($rating*10) - $i < 10)
+                            <i class="ri-star-half-line text-[30px] text-yellow-500"></i>
+                            @continue
+                            @endif
+                                <i class="ri-star-fill text-[30px] text-yellow-500"></i>
+                              
+                                
+                            @else
+                                <i class="ri-star-line text-[30px] text-yellow-500"></i>
+                        {{-- @endif --}}
+                        @endif
+                    @endfor
+                    
+                    {{-- <i class="ri-star-fill text-[30px] text-yellow-500"></i>
+                    <i class="ri-star-line text-[30px] text-yellow-500"></i>
+                    <i class="ri-star-line text-[30px] text-yellow-500"></i>
+                    <i class="ri-star-line text-[30px] text-yellow-500"></i> --}}
+                    {{-- {{ $rating }} --}}
+                </div>
                   
                 </div>
                 

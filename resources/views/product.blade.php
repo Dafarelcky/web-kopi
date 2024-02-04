@@ -1,6 +1,8 @@
 @extends('layouts.main')
 @section('content')
 
+@include('partials.navbar')
+
 <div class="text-center px-10 pt-20 pb-10">
     <form action="/product">
         <input type="text" class="border border-gray-700 px-4 py-2 w-full max-w-96 focus:outline-none focus:border-orange-700 focus:ring-orange-700" placeholder="Cari Product..." name="search" value="{{ request('search') }}">

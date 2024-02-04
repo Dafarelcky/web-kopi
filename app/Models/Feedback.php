@@ -17,8 +17,5 @@ class Feedback extends Model
         'rating',
     ];
 
-    public function transaksi()
-    {
-        return $this->belongsTo(Transaksi::class);
-    }
+   
 }

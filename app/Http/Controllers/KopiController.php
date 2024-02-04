@@ -20,13 +20,22 @@ class KopiController extends Controller
         $home = Home::first();
         $about = About::first();
         $contact = Contact::first();
+        $Totalproduct = Product::all()->count();
+        $feedback = Feedback::all()->count();
+        $rating = Feedback::sum('rating');
+
+        $totalRating = $rating / $feedback;
+        
+
         
 
         return view('home', [
             'home' => $home,
             'about' => $about,
             'products' => $product,
-            'contact' => $contact
+            'Totalproduct' => $Totalproduct,
+            'contact' => $contact,
+            'rating' => $totalRating
 
         ]);
     }
@@ -50,19 +59,35 @@ class KopiController extends Controller
         ]);
     }
 
-    public function buy(Request $request)
+    public function buy(Request $request, $id)
     {   
         
         $validate = $request->validate([
-            'nama_product' => 'required',
+            'nama_produk' => 'required',
             'nama' => 'required|max:255',
             'alamat' => 'required',
-            'quantity' => 'required|numeric',
-            'deskripsi' => 'nullable'
+            'quantity' => 'required',
+            'deskripsi' => 'nullable',
         ]);
+        $product = Product::find($id);
+       
+        // if (!$product) {
+        //     // Handle the case where the product is not found
+        //     return redirect()->back()->with('error', 'Product not found');
+        // }
+
+        // Calculate the total based on the product's harga and the requested quantity
+        $total = $product->harga * $request->quantity;
+
+        $validate['nama_produk'] = $product['nama'];
+        $validate['total_harga'] = $total;
+        
+        
+
+        Transaksi::insert($validate);
         
         $message = urlencode("
-            ORDER : {$validate['nama_product']} 
+            ORDER : {$validate['nama_produk']} 
             Nama Pembeli : {$validate['nama']} 
             Jumlah Barang : {$validate['quantity']} 
             Alamat : {$validate['alamat']}
@@ -73,32 +98,42 @@ class KopiController extends Controller
         
     }
 
-    public function transaksi_penjualan()
-    {
-        dump(request()->get('nama_produk'));
-        $data = new Transaksi([
-            'nama_produk' => request()->get('nama_produk'),
-            'harga_produk' => request()->get('harga'),
-            'total_harga' => request()->get('harga')*request()->get('jumlah'),
-        ]);
+    // public function transaksi_penjualan()
+    // {
+    //     dump(request()->get('nama_produk'));
+    //     $data = new Transaksi([
+    //         'nama_produk' => request()->get('nama_produk'),
+    //         'harga_produk' => request()->get('harga'),
+    //         'total_harga' => request()->get('harga')*request()->get('jumlah'),
+    //     ]);
 
-        $data->save();
+    //     $data->save();
 
-        return redirect()->route('home');
-    }
+    //     return redirect()->route('home');
+    // }
     
-    public function feedback($id)
+    public function feedback(Request $request, $id)
     {
-        dump(request()->get('nama'));
-        try {
-            $data = new Feedback([
-                'nama_produk' => request()->get('nama_produk'),
-                'nama' => request()->get('nama'),
-                'rating' => request()->get('rating'),
-                'id_transaksi' => $id,
-            ]);
         
-            $data->save();
+        try {
+            // $data = new Feedback([
+            //     'nama_produk' => request()->get('nama_produk'),
+            //     'nama' => request()->get('nama'),
+            //     'rating' => request()->get('rating'),
+            //     'id_transaksi' => $id,
+            // ]);
+
+            $validate = $request->validate([
+                'nama_produk' => 'required',
+                'nama' => 'required',
+                'rating' => 'required|min:1|max:5',
+                'id_transaksi' => 'requied'
+            ]);
+
+            $validate['id_transaksi'] = $id;
+            Feedback::create($validate);
+        
+            // $data->save();
         
             // If the save is successful, you can flash a success message
             Session::flash('success', 'Feedback posted successfully');
@@ -113,7 +148,7 @@ class KopiController extends Controller
     public function feedback_nama_produk($id)
     {
         return view('feedback', [
-            'produk' => Product::find($id),
+            'produk' => Transaksi::find($id),
             'id' => $id
         ]);
     }

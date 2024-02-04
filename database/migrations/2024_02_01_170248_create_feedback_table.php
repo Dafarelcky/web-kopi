@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('rating');
             $table->timestamps();
 
-            $table->foreign('transaksis');
+           
         });
     }
 

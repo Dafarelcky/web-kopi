@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+        rel="stylesheet"
+    />
     <style>
         * {
             font-family: 'Poppins', sans-serif
@@ -20,8 +24,8 @@
     @vite('resources/css/app.css')
 </head>
 <body class="relative">
-    @include('partials.navbar')
     @yield('content')
+    
     @include('partials.footer')
 
     

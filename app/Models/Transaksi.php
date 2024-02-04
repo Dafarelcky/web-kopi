@@ -10,14 +10,12 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_produk',
-        'harga_produk',
-        'total_harga',
-    ];
+    // protected $fillable = [
+    //     'nama_produk',
+    //     'harga_produk',
+    //     'total_harga',
+    // ];
+    protected $guarded = ['id'];
 
-    public function feedback()
-    {
-        return $this->hasOne(Feedback::class);
-    }
+    
 }
