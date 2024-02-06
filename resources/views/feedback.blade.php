@@ -16,7 +16,7 @@
                 <input name="nama" type="text" id="nama" class="border p-3 rounded-md" placeholder="Nama" autofocus>
             </div>
             <div class="flex flex-col gap-3 pb-5">
-                <label for="nama" class="text-sm text-gray-600">Rating : </label>
+                <label for="nama" class="text-sm text-gray-600">Beri rating : </label>
                 <input name="rating" id="rating" type="number" min="1" max="5" class="hidden" value="0" placeholder="Rating">
                 <div class="flex justify-between" id="rating_icons">
                     <i data-rating='1' class="ri-star-line text-5xl text-yellow-500"></i>
