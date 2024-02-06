@@ -21,8 +21,8 @@ class KopiController extends Controller
         $about = About::first();
         $contact = Contact::first();
         $Totalproduct = Product::all()->count();
-        $feedback = Feedback::all()->count();
-        $rating = Feedback::sum('rating');
+        $feedback = Feedback::all()->count() | 1;
+        $rating = Feedback::sum('rating') | 1;
 
         $totalRating = $rating / $feedback;
         

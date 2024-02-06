@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->longText('tentang_kami');
             $table->unsignedInteger('tahun_berdiri');
-            $table->unsignedInteger('total_produk');
-            $table->unsignedInteger('total_pelanggan_puas');
             $table->string('image_1');
             $table->string('image_2');
             $table->timestamps();

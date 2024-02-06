@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('quantity');
             $table->float('total_harga');
+            $table->enum('status', ['waiting', 'paid', 'failed'])->default('waiting');
             $table->longText('deskripsi')->nullable();
             $table->timestamps();
         });

@@ -9,4 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFeedback extends CreateRecord
 {
     protected static string $resource = FeedbackResource::class;
+
+    protected function canCreate(): bool { return false; }
 }

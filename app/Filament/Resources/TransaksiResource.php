@@ -19,19 +19,25 @@ class TransaksiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_produk')
+                Forms\Components\Select::make('status')
+                    ->options([
+                        // 'Waiting' => 'Waiting',
+                        'Paid' => 'Paid',
+                        'Failed' => 'Failed'
+                    ])
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('harga_produk')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('total_harga')
-                    ->required()
-                    ->numeric(),
+                    ->native(false)
+                
             ]);
     }
 
@@ -47,6 +53,9 @@ class TransaksiResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_harga')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('status')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -82,8 +91,8 @@ class TransaksiResource extends Resource
     {
         return [
             'index' => Pages\ListTransaksis::route('/'),
-            'create' => Pages\CreateTransaksi::route('/create'),
-            'edit' => Pages\EditTransaksi::route('/{record}/edit'),
+            // 'create' => Pages\CreateTransaksi::route('/create'),
+            // 'edit' => Pages\EditTransaksi::route('/{record}/edit'),
         ];
     }
 }

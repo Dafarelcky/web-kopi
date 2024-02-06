@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FeedbackResource extends Resource
@@ -18,6 +19,15 @@ class FeedbackResource extends Resource
     protected static ?string $model = Feedback::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+    public static function canEdit(Model $record): bool
+    {
+       return false; 
+    }
 
     public static function form(Form $form): Form
     {
@@ -62,9 +72,9 @@ class FeedbackResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
+            // ->actions([
+            //     Tables\Actions\EditAction::make(),
+            // ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -84,7 +94,7 @@ class FeedbackResource extends Resource
         return [
             'index' => Pages\ListFeedback::route('/'),
             'create' => Pages\CreateFeedback::route('/create'),
-            'edit' => Pages\EditFeedback::route('/{record}/edit'),
+            // 'edit' => Pages\EditFeedback::route('/{record}/edit'),
         ];
     }
 }

@@ -39,7 +39,7 @@
                 <div class="stat place-items-center">
                   <div class="stat-title">Rating {{ $rating }}/5</div>
                   <div class="stat-value">
-
+                    
                     @for ($i = 0; $i < 50; $i = $i + 10)
                         {{-- @if (($i + 1) % 10 == 0) --}}
                             @if ($i < ($rating*10))

@@ -31,12 +31,12 @@ class AboutResource extends Resource
                 Forms\Components\TextInput::make('tahun_berdiri')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('total_produk')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('total_pelanggan_puas')
-                    ->required()
-                    ->numeric(),
+                // Forms\Components\TextInput::make('total_produk')
+                //     ->required()
+                //     ->numeric(),
+                // Forms\Components\TextInput::make('total_pelanggan_puas')
+                //     ->required()
+                //     ->numeric(),
                 Forms\Components\FileUpload::make('image_1')
                     ->image()
                     ->required(),
@@ -52,8 +52,8 @@ class AboutResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('tentang_kami')->limit(50),
                 Tables\Columns\TextColumn::make('tahun_berdiri'),
-                Tables\Columns\TextColumn::make('total_produk'),
-                Tables\Columns\TextColumn::make('total_pelanggan_puas'),
+                // Tables\Columns\TextColumn::make('total_produk'),
+                // Tables\Columns\TextColumn::make('total_pelanggan_puas'),
                 Tables\Columns\ImageColumn::make('image_1'),
                 Tables\Columns\ImageColumn::make('image_2'),
                 Tables\Columns\TextColumn::make('created_at')
